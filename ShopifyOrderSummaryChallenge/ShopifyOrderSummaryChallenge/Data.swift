@@ -13,9 +13,26 @@ class Data: NSObject {
     static let shared = Data()
     
     public var orders: [Order]
+    public var provinces: [String]
     
     public override init() {
         orders = []
+        provinces = []
+    }
+    
+    public func getNumberOfOrdersForThisProvince(section: Int) -> Int {
+        
+        var numberOfOrdersForThisProvince = 0
+        
+        for order in Data.shared.orders {
+            
+            if (order.province == Data.shared.provinces[section]){
+                numberOfOrdersForThisProvince += 1
+            }
+            
+        }
+        
+        return numberOfOrdersForThisProvince
     }
     
 

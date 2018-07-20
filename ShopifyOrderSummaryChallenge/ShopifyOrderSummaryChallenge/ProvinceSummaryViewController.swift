@@ -13,7 +13,6 @@ class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var summaryTableView: UITableView!
     
     var orders: [Order]?
-    var provinces: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +47,8 @@ class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITa
         
         for order in Data.shared.orders {
             
-            if !(provinces.contains(order.province)){
-                provinces.append(order.province)
+            if !(Data.shared.provinces.contains(order.province)){
+                Data.shared.provinces.append(order.province)
             }
             
         }
@@ -62,25 +61,35 @@ class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITa
     func sortProvincesAlphabetically(){
         
         //can prob move this up into parent func
-        provinces.sort(by: { (value1: String, value2: String) -> Bool in
+        Data.shared.provinces.sort(by: { (value1: String, value2: String) -> Bool in
             return value1 < value2 })
         
     }
     
     @IBAction func viewAllProvinces(_ sender: UIButton) {
         
+        performSegue(withIdentifier: "showProvinceDetails", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showProvinceDetails") {
+            
+            //segue.destination
+            
+        }
     }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return provinces.count
+        return Data.shared.provinces.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        return provinces[section]
-
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//
+//        return provinces[section]
+//
+//    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -90,9 +99,9 @@ class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITa
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "numberOfOrdersByProvinceCell") as! UITableViewCell
 
-        let numberOfOrdersForThisProvince = getNumberOfOrdersForThisProvince(section: indexPath.section)
+        let numberOfOrdersForThisProvince = Data.shared.getNumberOfOrdersForThisProvince(section: indexPath.section)
 
-        let provinceName = provinces[indexPath.section]
+        let provinceName = Data.shared.provinces[indexPath.section]
 
         cell.textLabel?.text = "\(numberOfOrdersForThisProvince) number of orders from \(provinceName)"
 
@@ -101,20 +110,20 @@ class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITa
     
     
     
-    func getNumberOfOrdersForThisProvince(section: Int) -> Int {
-        
-        var numberOfOrdersForThisProvince = 0
-        
-        for order in Data.shared.orders {
-            
-            if (order.province == provinces[section]){
-                numberOfOrdersForThisProvince += 1
-            }
-            
-        }
-        
-        return numberOfOrdersForThisProvince
-    }
+//    func getNumberOfOrdersForThisProvince(section: Int) -> Int {
+//
+//        var numberOfOrdersForThisProvince = 0
+//
+//        for order in Data.shared.orders {
+//
+//            if (order.province == Data.shared.provinces[section]){
+//                numberOfOrdersForThisProvince += 1
+//            }
+//
+//        }
+//
+//        return numberOfOrdersForThisProvince
+//    }
     
     
 }

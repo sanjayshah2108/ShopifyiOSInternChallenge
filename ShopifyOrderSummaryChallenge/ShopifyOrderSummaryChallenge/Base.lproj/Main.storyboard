@@ -67,17 +67,17 @@
                     <navigationItem key="navigationItem" id="LVU-7X-nNX"/>
                     <connections>
                         <outlet property="summaryTableView" destination="HZU-aq-9S2" id="oOe-hR-Ncl"/>
-                        <segue destination="gUO-9T-Lr9" kind="show" id="s3t-81-Ts2"/>
+                        <segue destination="gUO-9T-Lr9" kind="show" identifier="showProvinceDetails" id="s3t-81-Ts2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2072.8000000000002" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Province Detailed Summary View Controller-->
         <scene sceneID="Ba2-35-E6H">
             <objects>
-                <viewController id="gUO-9T-Lr9" sceneMemberID="viewController">
+                <viewController id="gUO-9T-Lr9" customClass="ProvinceDetailedSummaryViewController" customModule="ShopifyOrderSummaryChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xxY-JJ-CBL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,7 +95,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="102" id="toE-0O-2rS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderInProvinceCell" rowHeight="102" id="toE-0O-2rS">
                                         <rect key="frame" x="0.0" y="28" width="375" height="102"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="toE-0O-2rS" id="NvS-pM-gI5">
@@ -144,6 +144,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="23I-9r-6Hd"/>
                     </view>
+                    <connections>
+                        <outlet property="detailedTableView" destination="zW3-Ni-Mms" id="ohW-ze-1FG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ve-zL-PIw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
