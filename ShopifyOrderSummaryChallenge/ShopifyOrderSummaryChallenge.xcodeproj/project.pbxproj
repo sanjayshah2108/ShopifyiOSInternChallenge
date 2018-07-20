@@ -10,8 +10,9 @@
 		CE25566E21011CF2002B403F /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25566D21011CF2002B403F /* Order.swift */; };
 		CE25567021011E75002B403F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25566F21011E75002B403F /* Customer.swift */; };
 		CE255672210167C9002B403F /* ReadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE255671210167C9002B403F /* ReadAPI.swift */; };
+		CE255674210180DC002B403F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE255673210180DC002B403F /* Data.swift */; };
 		CE9667B720FFF5DE00EEBABC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9667B620FFF5DE00EEBABC /* AppDelegate.swift */; };
-		CE9667B920FFF5DE00EEBABC /* ProvinceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9667B820FFF5DE00EEBABC /* ProvinceViewController.swift */; };
+		CE9667B920FFF5DE00EEBABC /* ProvinceSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9667B820FFF5DE00EEBABC /* ProvinceSummaryViewController.swift */; };
 		CE9667BC20FFF5DE00EEBABC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9667BA20FFF5DE00EEBABC /* Main.storyboard */; };
 		CE9667BE20FFF5E500EEBABC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9667BD20FFF5E500EEBABC /* Assets.xcassets */; };
 		CE9667C120FFF5E500EEBABC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9667BF20FFF5E500EEBABC /* LaunchScreen.storyboard */; };
@@ -21,9 +22,10 @@
 		CE25566D21011CF2002B403F /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		CE25566F21011E75002B403F /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		CE255671210167C9002B403F /* ReadAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAPI.swift; sourceTree = "<group>"; };
+		CE255673210180DC002B403F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		CE9667B320FFF5DE00EEBABC /* ShopifyOrderSummaryChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopifyOrderSummaryChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9667B620FFF5DE00EEBABC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE9667B820FFF5DE00EEBABC /* ProvinceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceViewController.swift; sourceTree = "<group>"; };
+		CE9667B820FFF5DE00EEBABC /* ProvinceSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceSummaryViewController.swift; sourceTree = "<group>"; };
 		CE9667BB20FFF5DE00EEBABC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE9667BD20FFF5E500EEBABC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9667C020FFF5E500EEBABC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,7 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				CE9667B620FFF5DE00EEBABC /* AppDelegate.swift */,
-				CE9667B820FFF5DE00EEBABC /* ProvinceViewController.swift */,
+				CE9667B820FFF5DE00EEBABC /* ProvinceSummaryViewController.swift */,
+				CE255673210180DC002B403F /* Data.swift */,
 				CE255671210167C9002B403F /* ReadAPI.swift */,
 				CE25566D21011CF2002B403F /* Order.swift */,
 				CE25566F21011E75002B403F /* Customer.swift */,
@@ -145,8 +148,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE255672210167C9002B403F /* ReadAPI.swift in Sources */,
+				CE255674210180DC002B403F /* Data.swift in Sources */,
 				CE25566E21011CF2002B403F /* Order.swift in Sources */,
-				CE9667B920FFF5DE00EEBABC /* ProvinceViewController.swift in Sources */,
+				CE9667B920FFF5DE00EEBABC /* ProvinceSummaryViewController.swift in Sources */,
 				CE9667B720FFF5DE00EEBABC /* AppDelegate.swift in Sources */,
 				CE25567021011E75002B403F /* Customer.swift in Sources */,
 			);
