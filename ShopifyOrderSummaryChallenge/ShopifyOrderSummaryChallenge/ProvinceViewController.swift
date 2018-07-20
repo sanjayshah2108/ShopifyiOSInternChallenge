@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ProvinceViewController.swift
 //  ShopifyOrderSummaryChallenge
 //
 //  Created by Sanjay Shah on 2018-07-18.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ProvinceViewController: UIViewController {
     
-    var tempArr: [Order]?
+    var orders: [Order]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tempArr = []
-        ReadAPI.fetchData(completion:{ orders in
+        ReadAPI.fetchData(completion:{ readOrders in
         
-            self.tempArr = orders
+            self.orders = readOrders
             
         
         })
