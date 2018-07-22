@@ -10,6 +10,9 @@ import UIKit
 
 class YearDetailedSummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    @IBOutlet weak var detailedTableView: UITableView!
+    
     var ordersForThisYear: [Order]?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,22 +28,31 @@ class YearDetailedSummaryViewController: UIViewController, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "numberOfOrdersByYearCell") as! OrderDetailsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "orderDetailsTableViewCell") as! OrderDetailsTableViewCell
         
         //forve unwrapping here because cellForRowAtIndexPath only runs if numberOfRowsInSection returns > 0 which is only possible if ordersIn2017 is not nil
         
         let order = ordersForThisYear![indexPath.row]
         
-        cell.orderIdLabel.text = "\(order.id)"
+        cell.orderIdLabel.text = "ID: \(order.id)"
         cell.orderTotalPriceLabel.text = "$\(order.totalPrice)"
-        cell.orderCustomerEmailLabel.text = "email"
+        cell.orderCustomerNameLabel.text = order.customerName
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return "2017"
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        detailedTableView.delegate = self
+        detailedTableView.dataSource = self
+        detailedTableView.register(UINib(nibName: "OrderDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "orderDetailsTableViewCell")
         
         
 
@@ -49,6 +61,12 @@ class YearDetailedSummaryViewController: UIViewController, UITableViewDelegate, 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    @IBAction func backToSummary(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+        
     }
     
 

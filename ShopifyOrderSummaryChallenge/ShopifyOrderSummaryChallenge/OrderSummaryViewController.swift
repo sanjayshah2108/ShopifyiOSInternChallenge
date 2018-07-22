@@ -11,9 +11,9 @@ import UIKit
 class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    @IBOutlet weak var ordersByYearHeading: UIView!
+    @IBOutlet weak var ordersByYearContainerView: UIView!
     
-    @IBOutlet weak var ordersByProvinceHeading: UIView!
+    @IBOutlet weak var ordersByProvinceContainerView: UIView!
     
     @IBOutlet weak var ordersIn2017Label: UILabel!
     
@@ -45,19 +45,38 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
             }
         })
         
+        setupContainerViews()
         addTapGestureRecognizersToHeadings()
     
     }
     
+    func setupContainerViews(){
+        
+        ordersByYearContainerView.layer.cornerRadius = 2
+        ordersByYearContainerView.layer.borderColor = ordersByYearContainerView.tintColor.cgColor
+        ordersByYearContainerView.layer.borderWidth = 1
+        
+        ordersByProvinceContainerView.layer.cornerRadius = 2
+        ordersByProvinceContainerView.layer.borderColor = ordersByProvinceContainerView.tintColor.cgColor
+        ordersByProvinceContainerView.layer.borderWidth = 1
+        
+        
+    }
+    
     func addTapGestureRecognizersToHeadings(){
         
-        let yearHeadingTapGesture = UITapGestureRecognizer(target: self, action: #selector(goToYearDetailsViewController))
+        let yearContainerTapGesture = UITapGestureRecognizer(target: self, action: #selector(goToYearDetailsViewController))
         
-        ordersByYearHeading.addGestureRecognizer(yearHeadingTapGesture)
+        ordersByYearContainerView.addGestureRecognizer(yearContainerTapGesture)
         
-        let provinceHeadingTapGesture = UITapGestureRecognizer(target: self, action: #selector(goToProvinceDetailsViewController))
+        let provinceContainerTapGesture = UITapGestureRecognizer(target: self, action: #selector(goToProvinceDetailsViewController))
         
-        ordersByProvinceHeading.addGestureRecognizer(provinceHeadingTapGesture)
+        for subview in ordersByProvinceContainerView.subviews {
+            if !(subview is UITableView) {
+                subview.addGestureRecognizer(provinceContainerTapGesture)
+            }
+        }
+        
         
     }
     

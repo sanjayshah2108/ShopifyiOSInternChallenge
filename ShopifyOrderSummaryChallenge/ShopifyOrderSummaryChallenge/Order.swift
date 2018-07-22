@@ -12,13 +12,15 @@ class Order {
     
     var id: Int
     //var items: [Item]
+    var customerName: String
     var totalPrice: Double
     var yearCreated: Int
     var province: String
     
-    init(inpId: Int, inpTotalPrice: Double, inpYearCreated: Int, inpProvince: String) {
+    init(inpId: Int, inpCustomerName: String, inpTotalPrice: Double, inpYearCreated: Int, inpProvince: String) {
         
         id = inpId
+        customerName = inpCustomerName
         totalPrice = inpTotalPrice
         yearCreated = inpYearCreated
         province = inpProvince

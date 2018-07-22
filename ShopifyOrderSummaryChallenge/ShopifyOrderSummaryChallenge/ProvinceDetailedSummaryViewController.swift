@@ -11,6 +11,7 @@ import UIKit
 class ProvinceDetailedSummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var currentProvince: String!
+    var ordersForCurrentProvince: [Order]?
     
     @IBOutlet weak var detailedTableView: UITableView!
     
@@ -20,9 +21,14 @@ class ProvinceDetailedSummaryViewController: UIViewController, UITableViewDelega
         detailedTableView.delegate = self
         detailedTableView.dataSource = self
         
+        ordersForCurrentProvince = Data.shared.getOrdersForThisProvince(province: currentProvince)
+    
+        
         detailedTableView.register(UINib(nibName: "OrderDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "orderDetailsTableViewCell")
         
     }
+    
+
     
     
     override func didReceiveMemoryWarning() {
@@ -76,12 +82,18 @@ class ProvinceDetailedSummaryViewController: UIViewController, UITableViewDelega
         
         let cell: OrderDetailsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "orderDetailsTableViewCell") as? OrderDetailsTableViewCell
         
-        let order = Data.shared.orders[indexPath.row]
+        var order: Order
+        
+        guard let ordersForCurrentProvince = ordersForCurrentProvince else {
+            return cell
+        }
+      
+        order = ordersForCurrentProvince[indexPath.row]
         
         cell.orderIdLabel.text = "\(order.id)"
         cell.orderTotalPriceLabel.text = "$\(order.totalPrice)"
        // cell.orderNumberOfItemsLabel.text = "\(order)"
-        cell.orderCustomerEmailLabel.text = "clientEmail"
+        cell.orderCustomerNameLabel.text = order.customerName
         
         
         return cell

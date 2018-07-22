@@ -20,20 +20,7 @@ class Data: NSObject {
         provinces = []
     }
     
-    public func getNumberOfOrdersForThisProvince(province: String) -> Int {
-        
-        var numberOfOrdersForThisProvince = 0
-        
-        for order in Data.shared.orders {
-            
-            if (order.province == province){
-                numberOfOrdersForThisProvince += 1
-            }
-            
-        }
-        
-        return numberOfOrdersForThisProvince
-    }
+
     
     public func getProvincesFromOrders(){
         
@@ -53,6 +40,36 @@ class Data: NSObject {
         Data.shared.provinces.sort(by: { (value1: String, value2: String) -> Bool in
             return value1 < value2 })
         
+    }
+    
+    public func getNumberOfOrdersForThisProvince(province: String) -> Int {
+        
+        var numberOfOrdersForThisProvince = 0
+        
+        for order in Data.shared.orders {
+            
+            if (order.province == province){
+                numberOfOrdersForThisProvince += 1
+            }
+            
+        }
+        
+        return numberOfOrdersForThisProvince
+    }
+    
+    public func getOrdersForThisProvince(province: String) -> [Order] {
+        
+        var ordersForThisProvince: [Order] = []
+        
+        for order in Data.shared.orders {
+            
+            if (order.province == province){
+                ordersForThisProvince.append(order)
+            }
+            
+        }
+        
+        return ordersForThisProvince
     }
     
     public func getNumberOfOrdersForThisYear(year: Int) -> Int {

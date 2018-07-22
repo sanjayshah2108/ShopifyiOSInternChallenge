@@ -51,6 +51,8 @@ class ReadAPI  {
                                     }
                                     
                                     
+                                    
+                                    
                                     guard let orderCreatedAt = order["created_at"] as? String else {
                                         print("orderId is nil")
                                         continue
@@ -59,7 +61,7 @@ class ReadAPI  {
                                     let orderYearCreated = convertDateToYear(date: orderCreatedAt)
                                     
                                     
-                                    var orderProvince: String;
+                                    var orderProvince: String = ""
                                     
                                     
                                     //get shipping address
@@ -69,7 +71,7 @@ class ReadAPI  {
                                         guard let province = shippingAddress["province"] as? String else {
                                             
                                             print("Error reading province")
-                                            // orderProvince = "Unknown"
+                                  
                                             continue
                                             
                                         }
@@ -86,7 +88,31 @@ class ReadAPI  {
                                         
                                     }
                                     
-                                    let readOrder = Order(inpId: orderId, inpTotalPrice: Double(orderTotalPriceAsDouble), inpYearCreated: orderYearCreated, inpProvince: orderProvince)
+                                    var customerName: String = ""
+                                    
+                                    if let customer = order["customer"] as? [String: Any]{
+                                        
+                                        guard let firstName = customer["first_name"] as? String else {
+                                             print("Error reading firstName")
+                                            continue
+                                            
+                                        }
+                                        
+                                        guard let lastName = customer["last_name"] as? String else {
+                                            print("Error reading firstName")
+                                            continue
+                                            
+                                        }
+                                
+                                        customerName = firstName + " " + lastName
+                                        
+                                        if(customerName == " "){
+                                            customerName = "Unknown"
+                                        }
+                                        
+                                    }
+                                    
+                                    let readOrder = Order(inpId: orderId, inpCustomerName: customerName, inpTotalPrice: Double(orderTotalPriceAsDouble), inpYearCreated: orderYearCreated, inpProvince: orderProvince)
                                     
                                     
                                     ordersArray.append(readOrder)

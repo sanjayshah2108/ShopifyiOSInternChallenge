@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CE25566E21011CF2002B403F /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25566D21011CF2002B403F /* Order.swift */; };
-		CE25567021011E75002B403F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25566F21011E75002B403F /* Customer.swift */; };
 		CE255672210167C9002B403F /* ReadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE255671210167C9002B403F /* ReadAPI.swift */; };
 		CE255674210180DC002B403F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE255673210180DC002B403F /* Data.swift */; };
 		CE2556762101B580002B403F /* ProvinceDetailedSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2556752101B580002B403F /* ProvinceDetailedSummaryViewController.swift */; };
@@ -24,7 +23,6 @@
 
 /* Begin PBXFileReference section */
 		CE25566D21011CF2002B403F /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
-		CE25566F21011E75002B403F /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		CE255671210167C9002B403F /* ReadAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAPI.swift; sourceTree = "<group>"; };
 		CE255673210180DC002B403F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		CE2556752101B580002B403F /* ProvinceDetailedSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceDetailedSummaryViewController.swift; sourceTree = "<group>"; };
@@ -77,7 +75,6 @@
 				CE255673210180DC002B403F /* Data.swift */,
 				CE255671210167C9002B403F /* ReadAPI.swift */,
 				CE25566D21011CF2002B403F /* Order.swift */,
-				CE25566F21011E75002B403F /* Customer.swift */,
 				CE25568E21041482002B403F /* OrderDetailsTableViewCell.swift */,
 				CE25568F21041482002B403F /* OrderDetailsTableViewCell.xib */,
 				CE9667BA20FFF5DE00EEBABC /* Main.storyboard */,
@@ -166,7 +163,6 @@
 				CE9667B920FFF5DE00EEBABC /* OrderSummaryViewController.swift in Sources */,
 				CE9667B720FFF5DE00EEBABC /* AppDelegate.swift in Sources */,
 				CE25569021041482002B403F /* OrderDetailsTableViewCell.swift in Sources */,
-				CE25567021011E75002B403F /* Customer.swift in Sources */,
 				CE2556762101B580002B403F /* ProvinceDetailedSummaryViewController.swift in Sources */,
 				CE25568D2102C562002B403F /* YearDetailedSummaryViewController.swift in Sources */,
 			);
