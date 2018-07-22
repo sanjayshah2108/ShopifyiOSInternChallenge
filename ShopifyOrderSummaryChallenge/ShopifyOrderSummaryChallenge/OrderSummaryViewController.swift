@@ -1,5 +1,5 @@
 //
-//  ProvinceSummaryViewController.swift
+//  OrderSummaryViewController
 //  ShopifyOrderSummaryChallenge
 //
 //  Created by Sanjay Shah on 2018-07-18.
@@ -8,11 +8,22 @@
 
 import UIKit
 
-class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    @IBOutlet weak var ordersByYearHeading: UIView!
+    
+    @IBOutlet weak var ordersByProvinceHeading: UIView!
+    
+    
+    @IBOutlet weak var ordersIn2017Label: UILabel!
     
     @IBOutlet weak var summaryTableView: UITableView!
     
+    
     var orders: [Order]?
+    var selectedProvince: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +36,11 @@ class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITa
             Data.shared.orders = readOrders
             
             self.getProvincesFromOrders()
+            let ordersIn2017 = self.getOrdersCreatedIn2017()
             
             DispatchQueue.main.async {
                 self.summaryTableView.reloadData()
+                self.ordersIn2017Label.text = "There were \(ordersIn2017) created in 2017"
             }
             
             
@@ -68,6 +81,7 @@ class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITa
     
     @IBAction func viewAllProvinces(_ sender: UIButton) {
         
+        selectedProvince = "All"
         performSegue(withIdentifier: "showProvinceDetails", sender: self)
         
     }
@@ -76,6 +90,11 @@ class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITa
         if (segue.identifier == "showProvinceDetails") {
             
             //segue.destination
+            let destination = segue.destination as! ProvinceDetailedSummaryViewController
+            
+            destination.currentProvince = selectedProvince
+            
+            
             
         }
     }
@@ -97,9 +116,9 @@ class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITa
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "numberOfOrdersByProvinceCell") as! UITableViewCell
+        let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "numberOfOrdersByProvinceCell")
 
-        let numberOfOrdersForThisProvince = Data.shared.getNumberOfOrdersForThisProvince(section: indexPath.section)
+        let numberOfOrdersForThisProvince = Data.shared.getNumberOfOrdersForThisProvince(province: Data.shared.provinces[indexPath.section])
 
         let provinceName = Data.shared.provinces[indexPath.section]
 
@@ -108,7 +127,31 @@ class ProvinceSummaryViewController: UIViewController, UITableViewDelegate, UITa
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.cellForRow(at: indexPath)?.isSelected = false
+        
+        selectedProvince = Data.shared.provinces[indexPath.section]
+        
+        performSegue(withIdentifier: "showProvinceDetails", sender: self)
+        
+        
+    }
     
+    func getOrdersCreatedIn2017() -> [Order]{
+        
+        var ordersIn2017: [Order] = []
+        
+        for order in Data.shared.orders {
+            
+            if order.yearCreated == 2017{
+                ordersIn2017.append(order)
+                
+            }
+        }
+        
+        return ordersIn2017
+    }
     
 //    func getNumberOfOrdersForThisProvince(section: Int) -> Int {
 //

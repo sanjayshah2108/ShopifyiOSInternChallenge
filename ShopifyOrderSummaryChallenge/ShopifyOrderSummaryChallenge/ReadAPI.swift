@@ -149,12 +149,8 @@ class ReadAPI  {
             
             let calendar = Calendar.current
             let components = calendar.dateComponents([.year], from: date)
-            if let yearAsDate = calendar.date(from:components) {
-                
-                let timeInterval = yearAsDate.timeIntervalSince1970
-                
-                let yearAsInt = Int(timeInterval)
-                
+            if let yearAsInt = components.year {
+
                 return yearAsInt
             }
             else {

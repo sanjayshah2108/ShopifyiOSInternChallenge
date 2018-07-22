@@ -10,45 +10,83 @@ import UIKit
 
 class ProvinceDetailedSummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return Data.shared.provinces.count
-    }
-    
-        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    
-            return Data.shared.provinces[section]
-    
-        }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Data.shared.getNumberOfOrdersForThisProvince(section: section)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "orderInProvinceCell") as! UITableViewCell
-        
-        
-        cell.textLabel?.text = "\(Data.shared.orders[indexPath.row].id)"
-        
-        return cell
-    }
+    var currentProvince: String!
     
     @IBOutlet weak var detailedTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         detailedTableView.delegate = self
         detailedTableView.dataSource = self
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        detailedTableView.register(UINib(nibName: "OrderDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "orderDetailsInProvinceCell")
+        
     }
     
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    @IBAction func backToSummary(_ sender: UIButton) {
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        if(currentProvince != "All"){
+            return 1
+        }
+        else {
+            return Data.shared.provinces.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+        if(currentProvince != "All"){
+            return currentProvince
+        }
+        else {
+            return Data.shared.provinces[section]
+        }
+    
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        var rowsCount: Int
+        
+        if (currentProvince != "All"){
+        
+            rowsCount =  Data.shared.getNumberOfOrdersForThisProvince(province: currentProvince)
+        }
+        else {
+            rowsCount = Data.shared.getNumberOfOrdersForThisProvince(province: Data.shared.provinces[section])
+        }
+        
+        return rowsCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell: OrderDetailsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "orderDetailsInProvinceCell") as? OrderDetailsTableViewCell
+        
+        let order = Data.shared.orders[indexPath.row]
+        
+        cell.orderIdLabel.text = "\(order.id)"
+        cell.orderTotalPriceLabel.text = "$\(order.totalPrice)"
+        cell.orderCustomerEmailLabel.text = "clientEmail"
+        
+        
+        return cell
+    }
+    
+
 
     /*
     // MARK: - Navigation

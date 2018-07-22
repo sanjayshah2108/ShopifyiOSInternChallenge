@@ -20,13 +20,13 @@ class Data: NSObject {
         provinces = []
     }
     
-    public func getNumberOfOrdersForThisProvince(section: Int) -> Int {
+    public func getNumberOfOrdersForThisProvince(province: String) -> Int {
         
         var numberOfOrdersForThisProvince = 0
         
         for order in Data.shared.orders {
             
-            if (order.province == Data.shared.provinces[section]){
+            if (order.province == province){
                 numberOfOrdersForThisProvince += 1
             }
             
