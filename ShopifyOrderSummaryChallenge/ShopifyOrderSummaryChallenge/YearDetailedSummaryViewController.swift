@@ -1,5 +1,5 @@
 //
-//  YearSummaryViewController.swift
+//  YearDetailedSummaryViewController.swift
 //  ShopifyOrderSummaryChallenge
 //
 //  Created by Sanjay Shah on 2018-07-20.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class YearSummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class YearDetailedSummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var ordersIn2017: [Order]?
+    var ordersForThisYear: [Order]?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let ordersIn2017 = ordersIn2017 {
-            return  ordersIn2017.count
+        if let ordersForThisYear = ordersForThisYear {
+            return  ordersForThisYear.count
         }
         
         else {
@@ -29,7 +29,7 @@ class YearSummaryViewController: UIViewController, UITableViewDelegate, UITableV
         
         //forve unwrapping here because cellForRowAtIndexPath only runs if numberOfRowsInSection returns > 0 which is only possible if ordersIn2017 is not nil
         
-        let order = ordersIn2017![indexPath.row]
+        let order = ordersForThisYear![indexPath.row]
         
         cell.orderIdLabel.text = "\(order.id)"
         cell.orderTotalPriceLabel.text = "$\(order.totalPrice)"
@@ -51,16 +51,5 @@ class YearSummaryViewController: UIViewController, UITableViewDelegate, UITableV
         // Dispose of any resources that can be recreated.
     }
     
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

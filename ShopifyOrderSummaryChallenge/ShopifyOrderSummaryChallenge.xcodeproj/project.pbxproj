@@ -12,7 +12,7 @@
 		CE255672210167C9002B403F /* ReadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE255671210167C9002B403F /* ReadAPI.swift */; };
 		CE255674210180DC002B403F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE255673210180DC002B403F /* Data.swift */; };
 		CE2556762101B580002B403F /* ProvinceDetailedSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2556752101B580002B403F /* ProvinceDetailedSummaryViewController.swift */; };
-		CE25568D2102C562002B403F /* YearSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25568C2102C562002B403F /* YearSummaryViewController.swift */; };
+		CE25568D2102C562002B403F /* YearDetailedSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25568C2102C562002B403F /* YearDetailedSummaryViewController.swift */; };
 		CE25569021041482002B403F /* OrderDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25568E21041482002B403F /* OrderDetailsTableViewCell.swift */; };
 		CE25569121041482002B403F /* OrderDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25568F21041482002B403F /* OrderDetailsTableViewCell.xib */; };
 		CE9667B720FFF5DE00EEBABC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9667B620FFF5DE00EEBABC /* AppDelegate.swift */; };
@@ -28,7 +28,7 @@
 		CE255671210167C9002B403F /* ReadAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAPI.swift; sourceTree = "<group>"; };
 		CE255673210180DC002B403F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		CE2556752101B580002B403F /* ProvinceDetailedSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceDetailedSummaryViewController.swift; sourceTree = "<group>"; };
-		CE25568C2102C562002B403F /* YearSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearSummaryViewController.swift; sourceTree = "<group>"; };
+		CE25568C2102C562002B403F /* YearDetailedSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearDetailedSummaryViewController.swift; sourceTree = "<group>"; };
 		CE25568E21041482002B403F /* OrderDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		CE25568F21041482002B403F /* OrderDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		CE9667B320FFF5DE00EEBABC /* ShopifyOrderSummaryChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopifyOrderSummaryChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,7 +73,7 @@
 				CE9667B620FFF5DE00EEBABC /* AppDelegate.swift */,
 				CE9667B820FFF5DE00EEBABC /* OrderSummaryViewController.swift */,
 				CE2556752101B580002B403F /* ProvinceDetailedSummaryViewController.swift */,
-				CE25568C2102C562002B403F /* YearSummaryViewController.swift */,
+				CE25568C2102C562002B403F /* YearDetailedSummaryViewController.swift */,
 				CE255673210180DC002B403F /* Data.swift */,
 				CE255671210167C9002B403F /* ReadAPI.swift */,
 				CE25566D21011CF2002B403F /* Order.swift */,
@@ -168,7 +168,7 @@
 				CE25569021041482002B403F /* OrderDetailsTableViewCell.swift in Sources */,
 				CE25567021011E75002B403F /* Customer.swift in Sources */,
 				CE2556762101B580002B403F /* ProvinceDetailedSummaryViewController.swift in Sources */,
-				CE25568D2102C562002B403F /* YearSummaryViewController.swift in Sources */,
+				CE25568D2102C562002B403F /* YearDetailedSummaryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,6 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var ordersByProvinceHeading: UIView!
     
-    
     @IBOutlet weak var ordersIn2017Label: UILabel!
     
     @IBOutlet weak var summaryTableView: UITableView!
@@ -30,61 +29,58 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
         
         summaryTableView.delegate = self
         summaryTableView.dataSource = self
-        //tempArr = []
+        
         ReadAPI.fetchData(completion:{ readOrders in
         
             Data.shared.orders = readOrders
             
-            self.getProvincesFromOrders()
-            let ordersIn2017 = self.getOrdersCreatedIn2017()
+            Data.shared.getProvincesFromOrders()
+            
+            let numberOfOrdersIn2017 = Data.shared.getNumberOfOrdersForThisYear(year: 2017)
             
             DispatchQueue.main.async {
+                
                 self.summaryTableView.reloadData()
-                self.ordersIn2017Label.text = "There were \(ordersIn2017) created in 2017"
+                self.ordersIn2017Label.text = "\(numberOfOrdersIn2017) orders created in 2017"
             }
-            
-            
-        
         })
+        
+        addTapGestureRecognizersToHeadings()
     
     }
+    
+    func addTapGestureRecognizersToHeadings(){
+        
+        let yearHeadingTapGesture = UITapGestureRecognizer(target: self, action: #selector(goToYearDetailsViewController))
+        
+        ordersByYearHeading.addGestureRecognizer(yearHeadingTapGesture)
+        
+        let provinceHeadingTapGesture = UITapGestureRecognizer(target: self, action: #selector(goToProvinceDetailsViewController))
+        
+        ordersByProvinceHeading.addGestureRecognizer(provinceHeadingTapGesture)
+        
+    }
+    
+    
+    @objc func goToYearDetailsViewController(sender: UITapGestureRecognizer){
+        
+        performSegue(withIdentifier: "showYearDetails", sender: self)
+        
+        
+    }
+    
+    @objc func goToProvinceDetailsViewController(sender: UITapGestureRecognizer){
+        
+        selectedProvince = "All"
+        performSegue(withIdentifier: "showProvinceDetails", sender: self)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func getProvincesFromOrders(){
-        
-        //provinces = []
-        
-        for order in Data.shared.orders {
-            
-            if !(Data.shared.provinces.contains(order.province)){
-                Data.shared.provinces.append(order.province)
-            }
-            
-        }
-        
-        sortProvincesAlphabetically()
-     
-        
-    }
-    
-    func sortProvincesAlphabetically(){
-        
-        //can prob move this up into parent func
-        Data.shared.provinces.sort(by: { (value1: String, value2: String) -> Bool in
-            return value1 < value2 })
-        
-    }
-    
-    @IBAction func viewAllProvinces(_ sender: UIButton) {
-        
-        selectedProvince = "All"
-        performSegue(withIdentifier: "showProvinceDetails", sender: self)
-        
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showProvinceDetails") {
@@ -93,9 +89,14 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
             let destination = segue.destination as! ProvinceDetailedSummaryViewController
             
             destination.currentProvince = selectedProvince
+        }
+        
+        else if (segue.identifier == "showYearDetails") {
             
+            //segue.destination
+            let destination = segue.destination as! YearDetailedSummaryViewController
             
-            
+            destination.ordersForThisYear =  Data.shared.getOrdersForThisYear(year: 2017)
         }
     }
     
@@ -103,12 +104,7 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
     func numberOfSections(in tableView: UITableView) -> Int {
         return Data.shared.provinces.count
     }
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//
-//        return provinces[section]
-//
-//    }
+
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -122,7 +118,7 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
 
         let provinceName = Data.shared.provinces[indexPath.section]
 
-        cell.textLabel?.text = "\(numberOfOrdersForThisProvince) number of orders from \(provinceName)"
+        cell.textLabel?.text = "\(numberOfOrdersForThisProvince) orders from \(provinceName)"
 
         return cell
     }
@@ -137,37 +133,6 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
         
         
     }
-    
-    func getOrdersCreatedIn2017() -> [Order]{
-        
-        var ordersIn2017: [Order] = []
-        
-        for order in Data.shared.orders {
-            
-            if order.yearCreated == 2017{
-                ordersIn2017.append(order)
-                
-            }
-        }
-        
-        return ordersIn2017
-    }
-    
-//    func getNumberOfOrdersForThisProvince(section: Int) -> Int {
-//
-//        var numberOfOrdersForThisProvince = 0
-//
-//        for order in Data.shared.orders {
-//
-//            if (order.province == Data.shared.provinces[section]){
-//                numberOfOrdersForThisProvince += 1
-//            }
-//
-//        }
-//
-//        return numberOfOrdersForThisProvince
-//    }
-    
-    
+
 }
 

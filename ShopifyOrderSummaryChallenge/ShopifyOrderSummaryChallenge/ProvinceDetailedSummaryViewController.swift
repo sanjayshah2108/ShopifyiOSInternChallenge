@@ -20,7 +20,7 @@ class ProvinceDetailedSummaryViewController: UIViewController, UITableViewDelega
         detailedTableView.delegate = self
         detailedTableView.dataSource = self
         
-        detailedTableView.register(UINib(nibName: "OrderDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "orderDetailsInProvinceCell")
+        detailedTableView.register(UINib(nibName: "OrderDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "orderDetailsTableViewCell")
         
     }
     
@@ -74,12 +74,13 @@ class ProvinceDetailedSummaryViewController: UIViewController, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: OrderDetailsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "orderDetailsInProvinceCell") as? OrderDetailsTableViewCell
+        let cell: OrderDetailsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "orderDetailsTableViewCell") as? OrderDetailsTableViewCell
         
         let order = Data.shared.orders[indexPath.row]
         
         cell.orderIdLabel.text = "\(order.id)"
         cell.orderTotalPriceLabel.text = "$\(order.totalPrice)"
+       // cell.orderNumberOfItemsLabel.text = "\(order)"
         cell.orderCustomerEmailLabel.text = "clientEmail"
         
         
