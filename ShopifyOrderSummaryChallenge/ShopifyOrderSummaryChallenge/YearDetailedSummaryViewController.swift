@@ -54,7 +54,13 @@ class YearDetailedSummaryViewController: UIViewController, UITableViewDelegate, 
         cell.orderNameLabel.text = order.name
         cell.orderTotalPriceLabel.text = "$\(order.totalPrice)"
         cell.orderCustomerNameLabel.text = order.customerName
-        cell.orderNumberOfItemsLabel.text = "\(order.numberOfItems) items"
+        
+        if(order.numberOfItems > 1){
+            cell.orderNumberOfItemsLabel.text = "\(order.numberOfItems) items"
+        }
+        else {
+            cell.orderNumberOfItemsLabel.text = "\(order.numberOfItems) item"
+        }
         
         return cell
     }

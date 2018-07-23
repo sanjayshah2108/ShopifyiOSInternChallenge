@@ -75,7 +75,7 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders by Province" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sev-4s-XxF">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders by Province" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sev-4s-XxF">
                                         <rect key="frame" x="10" y="17" width="149.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" red="0.1315271874" green="0.2408476584" blue="0.59328448830000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -87,17 +87,24 @@
                                             <color key="titleColor" red="0.1315271874" green="0.2408476584" blue="0.59328448830000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X08-xz-nHk">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.1315271874" green="0.2408476584" blue="0.59328448830000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="2cV-de-PRI" secondAttribute="trailing" constant="14" id="3fI-3E-XFd"/>
+                                    <constraint firstItem="HZU-aq-9S2" firstAttribute="top" secondItem="X08-xz-nHk" secondAttribute="bottom" id="62G-RJ-uEB"/>
+                                    <constraint firstItem="X08-xz-nHk" firstAttribute="leading" secondItem="c9U-S7-9f9" secondAttribute="leading" id="7mE-RC-kD3"/>
+                                    <constraint firstItem="X08-xz-nHk" firstAttribute="top" secondItem="c9U-S7-9f9" secondAttribute="top" id="B8h-VN-aSh"/>
                                     <constraint firstItem="HZU-aq-9S2" firstAttribute="leading" secondItem="c9U-S7-9f9" secondAttribute="leading" id="EcJ-Ot-K4P"/>
                                     <constraint firstItem="Sev-4s-XxF" firstAttribute="leading" secondItem="c9U-S7-9f9" secondAttribute="leading" constant="10" id="I5I-qQ-3jv"/>
                                     <constraint firstAttribute="trailing" secondItem="HZU-aq-9S2" secondAttribute="trailing" id="PcO-YR-si1"/>
                                     <constraint firstItem="2cV-de-PRI" firstAttribute="top" secondItem="c9U-S7-9f9" secondAttribute="top" constant="11" id="Yub-w2-CrY"/>
                                     <constraint firstItem="HZU-aq-9S2" firstAttribute="top" secondItem="Sev-4s-XxF" secondAttribute="bottom" constant="8" id="hKv-Dk-wZd"/>
                                     <constraint firstAttribute="bottom" secondItem="HZU-aq-9S2" secondAttribute="bottom" id="jAn-jO-TEj"/>
+                                    <constraint firstAttribute="trailing" secondItem="X08-xz-nHk" secondAttribute="trailing" id="lhO-kp-D7y"/>
                                     <constraint firstItem="Sev-4s-XxF" firstAttribute="top" secondItem="c9U-S7-9f9" secondAttribute="top" constant="17" id="ziz-K0-lJT"/>
                                 </constraints>
                             </view>
@@ -119,6 +126,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ordersByProvinceContainerView" destination="c9U-S7-9f9" id="A6v-9s-TIT"/>
+                        <outlet property="ordersByProvinceHeader" destination="X08-xz-nHk" id="YAu-Zg-mhF"/>
                         <outlet property="ordersByYearContainerView" destination="zGN-YJ-JXW" id="gIS-Si-WqA"/>
                         <outlet property="ordersIn2017Label" destination="bT2-8t-erT" id="5uU-Sr-Bz5"/>
                         <outlet property="summaryTableView" destination="HZU-aq-9S2" id="oOe-hR-Ncl"/>

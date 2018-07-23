@@ -13,6 +13,7 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var ordersByYearContainerView: UIView!
     
+    @IBOutlet weak var ordersByProvinceHeader: UIView!
     @IBOutlet weak var ordersByProvinceContainerView: UIView!
     
     @IBOutlet weak var ordersIn2017Label: UILabel!
@@ -99,13 +100,12 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
         
         ordersByYearContainerView.addGestureRecognizer(yearContainerTapGesture)
         
-        let provinceContainerTapGesture = UITapGestureRecognizer(target: self, action: #selector(goToProvinceDetailsViewController))
+        let provinceHeaderTapGesture = UITapGestureRecognizer(target: self, action: #selector(goToProvinceDetailsViewController))
         
-        for subview in ordersByProvinceContainerView.subviews {
-            if !(subview is UITableView) {
-                subview.addGestureRecognizer(provinceContainerTapGesture)
-            }
-        }
+        
+        ordersByProvinceHeader.addGestureRecognizer(provinceHeaderTapGesture)
+        
+        
     }
     
     
@@ -121,11 +121,6 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
         performSegue(withIdentifier: "showProvinceDetails", sender: self)
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -176,6 +171,12 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
         performSegue(withIdentifier: "showProvinceDetails", sender: self)
         
         
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
 }

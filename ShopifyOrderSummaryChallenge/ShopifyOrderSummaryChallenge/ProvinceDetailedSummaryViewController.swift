@@ -93,8 +93,14 @@ class ProvinceDetailedSummaryViewController: UIViewController, UITableViewDelega
         cell.orderIdLabel.text = "ID: \(order.id)"
         cell.orderNameLabel.text = order.name
         cell.orderTotalPriceLabel.text = "$\(order.totalPrice)"
-        cell.orderNumberOfItemsLabel.text = "\(order.numberOfItems) items"
         cell.orderCustomerNameLabel.text = order.customerName
+        
+        if(order.numberOfItems > 1){
+            cell.orderNumberOfItemsLabel.text = "\(order.numberOfItems) items"
+        }
+        else {
+            cell.orderNumberOfItemsLabel.text = "\(order.numberOfItems) item"
+        }
         
         
         return cell
