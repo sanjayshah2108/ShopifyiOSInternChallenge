@@ -21,9 +21,15 @@ class ProvinceDetailedSummaryViewController: UIViewController, UITableViewDelega
         detailedTableView.delegate = self
         detailedTableView.dataSource = self
         
-        ordersForCurrentProvince = Data.shared.getOrdersForThisProvince(province: currentProvince)
-    
-        
+        if (currentProvince != "All"){
+            ordersForCurrentProvince = Data.shared.getOrdersForThisProvince(province: currentProvince)
+        }
+        else {
+            
+            ordersForCurrentProvince = Data.shared.orders
+            
+        }
+
         detailedTableView.register(UINib(nibName: "OrderDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "orderDetailsTableViewCell")
         
     }
@@ -33,12 +39,6 @@ class ProvinceDetailedSummaryViewController: UIViewController, UITableViewDelega
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    
-    @IBAction func backToSummary(_ sender: UIButton) {
-        
-        self.navigationController?.popViewController(animated: true)
     }
     
     
@@ -90,9 +90,10 @@ class ProvinceDetailedSummaryViewController: UIViewController, UITableViewDelega
       
         order = ordersForCurrentProvince[indexPath.row]
         
-        cell.orderIdLabel.text = "\(order.id)"
+        cell.orderIdLabel.text = "ID: \(order.id)"
+        cell.orderNameLabel.text = order.name
         cell.orderTotalPriceLabel.text = "$\(order.totalPrice)"
-       // cell.orderNumberOfItemsLabel.text = "\(order)"
+        cell.orderNumberOfItemsLabel.text = "\(order.numberOfItems) items"
         cell.orderCustomerNameLabel.text = order.customerName
         
         

@@ -19,6 +19,7 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var summaryTableView: UITableView!
     
+    var activityIndicator: UIActivityIndicatorView!
     
     var orders: [Order]?
     var selectedProvince: String?
@@ -29,6 +30,9 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
         
         summaryTableView.delegate = self
         summaryTableView.dataSource = self
+    
+        setupContainerViews()
+        
         
         ReadAPI.fetchData(completion:{ readOrders in
         
@@ -42,12 +46,36 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
                 
                 self.summaryTableView.reloadData()
                 self.ordersIn2017Label.text = "\(numberOfOrdersIn2017) orders created in 2017"
+                
+                self.activityIndicator.stopAnimating()
+            
             }
         })
         
-        setupContainerViews()
+        
         addTapGestureRecognizersToHeadings()
     
+    }
+    
+    override func viewWillLayoutSubviews() {
+        
+        setupActivityIndicator()
+        
+    }
+
+    
+    func setupActivityIndicator(){
+        
+        activityIndicator = UIActivityIndicatorView()
+        
+        activityIndicator.frame = view.bounds
+        activityIndicator.center = view.center
+        
+        activityIndicator.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
     }
     
     func setupContainerViews(){
@@ -104,15 +132,13 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showProvinceDetails") {
             
-            //segue.destination
             let destination = segue.destination as! ProvinceDetailedSummaryViewController
             
             destination.currentProvince = selectedProvince
         }
         
         else if (segue.identifier == "showYearDetails") {
-            
-            //segue.destination
+         
             let destination = segue.destination as! YearDetailedSummaryViewController
             
             destination.ordersForThisYear =  Data.shared.getOrdersForThisYear(year: 2017)

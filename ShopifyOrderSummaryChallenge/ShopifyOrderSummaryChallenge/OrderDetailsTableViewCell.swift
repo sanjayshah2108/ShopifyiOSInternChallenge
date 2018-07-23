@@ -13,10 +13,11 @@ class OrderDetailsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var orderIdLabel: UILabel!
     
+    @IBOutlet weak var orderNameLabel: UILabel!
+    
     @IBOutlet weak var orderCustomerNameLabel: UILabel!
     
     @IBOutlet weak var orderTotalPriceLabel: UILabel!
-    
     
     @IBOutlet weak var orderNumberOfItemsLabel: UILabel!
     
