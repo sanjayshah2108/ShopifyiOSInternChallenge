@@ -20,6 +20,7 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var summaryTableView: UITableView!
     
     var activityIndicator: UIActivityIndicatorView!
+    var activityOverlayView: UIView!
     
     var orders: [Order]?
     var selectedProvince: String?
@@ -32,7 +33,8 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
         summaryTableView.dataSource = self
     
         setupContainerViews()
-        
+        setupActivityIndicator()
+    
         
         ReadAPI.fetchData(completion:{ readOrders in
         
@@ -48,6 +50,7 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
                 self.ordersIn2017Label.text = "\(numberOfOrdersIn2017) orders created in 2017"
                 
                 self.activityIndicator.stopAnimating()
+                self.activityOverlayView.removeFromSuperview()
             
             }
         })
@@ -56,25 +59,24 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
         addTapGestureRecognizersToHeadings()
     
     }
-    
-    override func viewWillLayoutSubviews() {
-        
-        setupActivityIndicator()
-        
-    }
 
     
     func setupActivityIndicator(){
         
+        activityOverlayView = UIView(frame: UIScreen.main.bounds)
+        activityOverlayView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
+        
+        view.addSubview(activityOverlayView)
+        
         activityIndicator = UIActivityIndicatorView()
         
-        activityIndicator.frame = view.bounds
-        activityIndicator.center = view.center
-        
         activityIndicator.activityIndicatorViewStyle =
-            UIActivityIndicatorViewStyle.gray
-        view.addSubview(activityIndicator)
+            UIActivityIndicatorViewStyle.white
         
+        activityOverlayView.addSubview(activityIndicator)
+        
+        activityIndicator.center = view.center
+    
         activityIndicator.startAnimating()
     }
     
@@ -104,16 +106,13 @@ class OrderSummaryViewController: UIViewController, UITableViewDelegate, UITable
                 subview.addGestureRecognizer(provinceContainerTapGesture)
             }
         }
-        
-        
     }
     
     
     @objc func goToYearDetailsViewController(sender: UITapGestureRecognizer){
         
         performSegue(withIdentifier: "showYearDetails", sender: self)
-        
-        
+  
     }
     
     @objc func goToProvinceDetailsViewController(sender: UITapGestureRecognizer){
